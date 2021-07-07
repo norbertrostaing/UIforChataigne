@@ -1,0 +1,827 @@
+{
+	"name": "Soundcraft UI Control",
+	"type": "WebSocket Client",
+	"path": "Hardware",
+	
+	"version": "0.1",
+	"description": "Allow you to control a Soundcraft UI 12, 16 or 24 with chataigne",
+	"url":"",
+	"downloadURL": "",
+	
+	"hasInput": false,
+	"hasOutput": false, 
+
+	"hideDefaultCommands": true,
+	"hideDefaultParameters": [
+		"serverPath",
+		"autoAdd",
+		"protocol",
+		"messageStructure",
+		"firstValueIsTheName",
+		"useSecureConnection"
+	],
+	
+	"defaults": {
+		"protocol":"lines",
+		"autoAdd":false,
+	},
+	
+	"parameters": {
+		"UI IP": {
+			"type": "String",
+			"default": "10.0.0.1", 
+		}, 
+	},
+	
+	"scripts": [
+		"SCUI.js"
+	],
+	
+	"values": {
+	},
+	
+	"commands": {
+		
+		"Ch Level":
+		{
+			"menu": "Channel",
+			"callback": "channelLevel",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"Ch Mute":
+		{
+			"menu": "Channel",
+			"callback": "channelMute",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Boolean",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"Ch Pan":
+		{
+			"menu": "Channel",
+			"callback": "channelPan",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"Ch Gain":
+		{
+			"menu": "Channel",
+			"callback": "channelGain",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"Ch Aux Send":
+		{
+			"menu": "Channel",
+			"callback": "channelAuxSend",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Aux": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":4,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"Ch Fx Send":
+		{
+			"menu": "Channel",
+			"callback": "channelFxSend",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Fx": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":4,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"Line In Level":
+		{
+			"menu": "LineIn",
+			"callback": "lineInLevel",
+			"parameters": { 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"Player Level":
+		{
+			"menu": "Player",
+			"callback": "playerLevel",
+			"parameters": { 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"FX Level":
+		{
+			"menu": "FX",
+			"callback": "fxLevel",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":4,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"Sub Level":
+		{
+			"menu": "Sub",
+			"callback": "subLevel",
+			"parameters": { 
+				"Sub": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":4,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+		"Aux Level":
+		{
+			"menu": "Aux",
+			"callback": "auxLevel",
+			"parameters": { 
+				"AuxBus": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":4,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"Ch Phantom":
+		{
+			"menu": "Channel",
+			"callback": "channelPhantom",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Boolean",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"Ch Invert Phase":
+		{
+			"menu": "Channel",
+			"callback": "channelInvertPhase",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Boolean",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+		"Ch Solo":
+		{
+			"menu": "Channel",
+			"callback": "channelSolo",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Boolean",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Line In Aux Send":
+		{
+			"menu": "LineIn",
+			"callback": "lineInAuxSend",
+			"parameters": { 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Player Aux Send":
+		{
+			"menu": "Player",
+			"callback": "playerAuxSend",
+			"parameters": { 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"FX Aux Send":
+		{
+			"menu": "FX",
+			"callback": "fxAuxSend",
+			"parameters": { 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Ch Aux Mute":
+		{
+			"menu": "Channel",
+			"callback": "channelAuxMute",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"AuxBus": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":4,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Boolean",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Ch EQ HPF Freq":
+		{
+			"menu": "Channel",
+			"callback": "channelHPF",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Ch Eq Freq":
+		{
+			"menu": "Channel",
+			"callback": "channelEqFreq",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Band": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":4,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Ch Eq Gain":
+		{
+			"menu": "Channel",
+			"callback": "channelEqGain",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Band": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":4,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Ch Eq Q":
+		{
+			"menu": "Channel",
+			"callback": "channelEqQ",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Band": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":4,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Ch Gate Thresh":
+		{
+			"menu": "Channel",
+			"callback": "channelGateThreshold",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Ch Comp Ratio":
+		{
+			"menu": "Channel",
+			"callback": "channelCompRatio",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Ch Comp Thresh":
+		{
+			"menu": "Channel",
+			"callback": "channelCompThreshold",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Ch Comp Attack":
+		{
+			"menu": "Channel",
+			"callback": "channelCompAttack",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Ch Comp Release":
+		{
+			"menu": "Channel",
+			"callback": "channelCompRelease",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Ch Comp Gain":
+		{
+			"menu": "Channel",
+			"callback": "channelCompGain",
+			"parameters": { 
+				"Channel": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+		"Set Value":
+		{
+			"menu": "",
+			"callback": "setVal",
+			"parameters": { 
+				"Target Type": {
+					"type": "Enum",
+					"options" : {
+						"Channel" : "channel",
+						"Line in" : "linein",
+						"Player" : "player",
+						"Sub" : "sub",
+						"Aux" : "aux",
+						"Fx" : "fx"
+					}
+				}, 
+				"Target Number": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Target command": {
+					"type": "Enum",
+					"options" : {
+						"Level"  : "level" ,
+						"Mute"  : "mute" ,
+						"Pan"  : "pan" ,
+						"Gain"  : "gain" ,
+						"Phantom"  : "phantom" ,
+						"Invert"  : "invert" ,
+						"Solo"  : "solo" ,
+						"HPF freq" : "hpf.freq",
+						"EQ 1 freq" : "eq1.freq",
+						"EQ 1 gain" : "eq1.gain",
+						"EQ 1 q" : "eq1.q",
+						"EQ 2 freq" : "eq2.freq",
+						"EQ 2 gain" : "eq2.gain",
+						"EQ 2 q" : "eq2.q",
+						"EQ 3 freq" : "eq3.freq",
+						"EQ 3 gain" : "eq3.gain",
+						"EQ 3 q" : "eq3.q",
+						"EQ 4 freq" : "eq4.freq",
+						"EQ 4 gain" : "eq4.gain",
+						"EQ 4 q" : "eq4.q",
+						"Gate thresh" : "gate.thresh",
+						"Comp ratio" : "dyn.ratio",
+						"Comp threshold" : "dyn.threshold",
+						"Comp attack" : "dyn.attack",
+						"Comp release" : "dyn.release",
+						"Comp outgain" : "dyn.outgain",
+					}
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+		"Set Send":
+		{
+			"menu": "",
+			"callback": "setSend",
+			"parameters": { 
+				"From Type": {
+					"type": "Enum",
+					"options" : {
+						"Channel" : "channel",
+						"Line in" : "linein",
+						"Player" : "player",
+						"Fx" : "fx"
+					}
+				}, 
+				"From Number": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"To Type": {
+					"type": "Enum",
+					"options" : {
+						"Aux" : "aux",
+						"Fx" : "fx"
+					}
+				}, 
+				"To Number": {
+					"type": "Integer",
+					"default": 1, 
+					"min":1,
+					"max":24,
+					"useForMapping": true
+				}, 
+				"Value": {
+					"type": "Float",
+					"default": 0, 
+					"min":0,
+					"max":1,
+					"useForMapping": true
+				}
+			}
+		},
+
+	
+
+
+
+
+
+
+	}
+}
