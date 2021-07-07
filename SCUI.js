@@ -1,5 +1,6 @@
 var TSSendAlive = 0;
 var mixer;
+var vus;
 
 var trackNames = {
 	'i.0' : "Input_1", 
@@ -65,22 +66,28 @@ var commandNames = {
 
 
 function init() {
-	var mixer = local.addContainer("Mixer values");
+	mixer = local.addContainer("Mixer values");
 	var tracks = util.getObjectProperties(trackNames);
 	var commands = util.getObjectProperties(commandNames);
 	for (var i = 0; i< tracks.length; i++) {
 		var name = trackNames[tracks[i]];
 		var container = mixer.addContainer(name);
 		container.setCollapsed(true);
-		var isInput = tracks[i].substring(0,1) == "i";
+		var type = tracks[i].substring(0,1);
+		var isInput = type == "i";
 		for (var j = 0; j < commands.length; j++) {
 			if (commandNames[commands[j]][1] == "f") {
 				container.addFloatParameter(commandNames[commands[j]][0], "", 0, 0, 1);
 			} else if (commandNames[commands[j]][1] == "b") {
 				container.addBoolParameter(commandNames[commands[j]][0], "", false);
-			} 
+			}
 		}
+	}
 
+	vus = local.addContainer("Vumeters");
+	for (var i = 0; i< 12; i++) {
+		vus.addFloatParameter("inGain"+(i+1), "", 0, 0, 1);
+		vus.addFloatParameter("inVol"+(i+1), "", 0, 0, 1);
 	}
 }
 
@@ -91,16 +98,21 @@ function wsMessageReceived(data) {
 		if (data[i].substring(0,7) === "3:::RTA") {} 
 		else if (data[i].substring(0,3) === "2::") {}
 		else if (data[i].substring(0,4) === "VU2^") {
-			script.log(data[i].substring(4,data[i].length));
 			var vu = data[i].substring(4,data[i].length);
+			vu = util.fromBase64Bytes(vu);
 
-			vu = util.fromBase64(vu);
-			script.log(vu.length);
 			var test = "";
-			for (var i = 0; i< vu.length; i++) {
-				test += " : "+vu[i]; 
+			// 1 : gain
+			// 3 : lvl
+			var track = 0;
+			for (var i = 8; i< vu.length && track < 12; i = i+6) {
+				script.log(track);
+				var vuIn = vu[i] * 0.004167508166392142;
+				var vuOut = vu[i+2] * 0.004167508166392142;
+				vus.getChild("inGain"+(track+1)).set(vuIn);
+				vus.getChild("inVol"+(track+1)).set(vuOut);
+				track = track + 1;
 			}
-			script.log(test);
 		}
 		else if (data[i].substring(0,4) === "SETD") {
 			parseCommand(data[i]);
