@@ -61,6 +61,20 @@ var commandNames = {
 	"dyn.outgain" : ["Comp_Out_Gain", "f"],
 };
 
+var sendAuxNames = {
+	'aux.0' : "Aux_1", 
+	'aux.1' : "Aux_2", 
+	'aux.2' : "Aux_3", 
+	'aux.3' : "Aux_4" 
+};
+
+var sendFxNames = {
+	'fx.0' : "FX_1", 
+	'fx.1' : "FX_2", 
+	'fx.2' : "FX_3", 
+	'fx.3' : "FX_4" 
+};
+
 // .aux."+(a-1)+".value
 // .fx."+(f-1)+".value
 
@@ -81,6 +95,8 @@ function init() {
 			} else if (commandNames[commands[j]][1] == "b") {
 				container.addBoolParameter(commandNames[commands[j]][0], "", false);
 			}
+		}
+		if (["i", "p", "l", "f"].indexOf(type)>=0) {
 		}
 	}
 
