@@ -5,8 +5,8 @@
 	
 	"version": "0.1",
 	"description": "Allow you to control a Soundcraft UI 12, 16 or 24 with chataigne",
-	"url":"",
-	"downloadURL": "",
+	"url":"https://github.com/norbertrostaing/UIforChataigne",
+	"downloadURL": "https://github.com/norbertrostaing/UIforChataigne/archive/refs/heads/main.zip",
 	
 	"hasInput": false,
 	"hasOutput": false, 
